@@ -1,8 +1,8 @@
 <template>
     <header class="header active-header">
-        <img src="../assets/images/logo.png" class="logo" alt="Logo"/>
+        <img src="../assets/images/logo.png" class="logo" alt="Logo" @click="handleHome"/>
         <nav class="nav">
-            <a href="#discover">Discover</a>
+            <a href="/#discover">Discover</a>
             <a href="/grader">Grade</a>
         </nav>
     </header>
@@ -11,8 +11,10 @@
 <script>
 export default {
     name: "Header",
-    methods(){
-        
+    methods:{
+        handleHome(){
+            this.$router.push('/')
+        }
     }
 }
 </script>
@@ -23,17 +25,22 @@ export default {
     padding: 5px 15% 10px 5%;
     justify-content: space-between;
     align-items: center;
+    z-index: 10;
 
     .logo{
         height: 60px;
         width: 10%;
+        object-fit: contain;
     }
 
     nav{
         a{
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Oswald', sans-serif;
             font-weight: bold;
-            color: gray;
+            color: $color-common;
+            &:hover{
+                opacity: 0.7; 
+            }
         }
 
         a:nth-child(2){
