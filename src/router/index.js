@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Grader from '../views/Grader.vue';
 
 Vue.use(VueRouter);
 
