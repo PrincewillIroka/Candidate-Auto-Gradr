@@ -1,4 +1,5 @@
-# auto-candidate-gradr
+# Candidate-Auto-Gradr
+A Vue JS app that helps recruiters to automatically grade candidates based on their experiences and tools used.
 
 ## Project setup
 ```
