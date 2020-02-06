@@ -1,35 +1,35 @@
 <template>
   <div class="home">
-    <Header class="header"/>
+    <Header class="header" />
     <section class="section">
-      <Banner/>
-      <Discover/>
+      <Banner />
+      <Discover />
     </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from '@/components/Header.vue';
-import Banner from '@/views/Banner.vue';
-import Discover from '@/views/Discover.vue';
+import Header from "@/components/Header.vue";
+import Banner from "@/views/Banner.vue";
+import Discover from "@/views/Discover.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
     Header,
     Banner,
     Discover
-  },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.home{
+.home {
   display: flex;
   flex-direction: column;
 
-  .header{
+  >.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -37,11 +37,10 @@ export default {
     z-index: 10;
   }
 
-  .section{
+  >.section {
     display: flex;
     flex-direction: column;
     margin-top: 120px;
   }
-
 }
 </style>

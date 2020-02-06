@@ -1,6 +1,6 @@
 <template>
   <div class="grader">
-    <Header />
+    <Header class="header" />
     <section class="gr-content">
       <div class="gr-header">
         <span>Enter Candidate details here:</span>
@@ -9,25 +9,16 @@
           <span class="gr-clr">Clear All</span>
         </div>
       </div>
-      <div class="gr-progress">
-        <div class="gr-progress-title">
-          <span @click="changeTab(1)">Candidate Details</span>
-          <span @click="changeTab(2)">Experience</span>
-          <span @click="changeTab(3)">Tools/Technologies Used</span>
-        </div>
-        <div class="gr-progress-count">
-          <span>1</span>
-          <span></span>
-          <span>2</span>
-          <span></span>
-          <span>3</span>
-        </div>
-      </div>
+      <ol class="steps">
+        <li class="step is-complete" data-step="1" @click="changeTab(1)">Candidate Details</li>
+        <li class="step is-active" data-step="2" @click="changeTab(2)">Experience</li>
+        <li class="step" data-step="3" @click="changeTab(3)">Tools/Technologies Used</li>
+      </ol>
     </section>
     <section class="gr-content2">
-      <CandidateDetails v-if="activeTab === 1" />
-      <Experience v-else-if="activeTab === 2" />
-      <TechnologiesUsed v-else-if="activeTab === 3" />
+      <CandidateDetails v-if="activeStep === 1" />
+      <Experience v-else-if="activeStep === 2" />
+      <TechnologiesUsed v-else-if="activeStep === 3" />
     </section>
   </div>
 </template>
@@ -53,7 +44,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["activeTab"])
+    ...mapState(["activeStep"])
   }
 };
 </script>
@@ -62,11 +53,18 @@ export default {
 .grader {
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
-  overflow: hidden;
+
+  > .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
 
   > .gr-content {
-    padding: 50px 50px 0;
+    margin-top: 120px;
+    padding: 0 50px;
 
     .gr-header {
       display: flex;
@@ -88,40 +86,104 @@ export default {
         font-weight: bold;
         cursor: default;
         margin-left: 70px;
+        &:hover {
+          opacity: 0.9;
+        }
       }
 
       .gr-result {
         background-color: $color-white;
-        padding: 5px 10px;
+        padding: 3px 12px;
         border-radius: 3px;
-        color: $color-common-dark;
+        border: 2px solid $color-white;
+        color: $color-common;
         font-weight: bold;
         cursor: default;
+        &:hover {
+          border: 2px solid $color-white;
+          background-color: $color-common;
+          color: $color-white;
+        }
       }
     }
 
-    .gr-progress {
-      display: flex;
-      flex-direction: column;
-      margin-top: 30px;
+    .steps {
+      list-style: none;
+      display: table;
+      table-layout: fixed;
       width: 100%;
+      color: darken($mute, 33%);
+      height: 4rem;
+      margin-top: 60px;
+      font-family: "Open Sans", sans-serif;
 
-      .gr-progress-title {
-        display: flex;
-        font-family: "Oswald", sans-serif;
+      > .step {
+        position: relative;
+        display: table-cell;
+        text-align: center;
+        font-size: 0.875rem;
+        color: #6d6875;
+        cursor: default;
 
-        > span {
-          display: flex;
-          justify-content: center;
-          width: 33.33%;
-          cursor: default;
-          font-weight: bold;
+
+        &:before {
+          content: attr(data-step);
+          display: block;
+          margin: 0 auto;
+          background: #ffffff;
+          border: 2px solid $mute;
+          color: $mute;
+          width: 2rem;
+          height: 2rem;
+          text-align: center;
+          margin-bottom: -4.2rem;
+          line-height: 1.9rem;
+          border-radius: 100%;
+          position: relative;
+          z-index: 1;
+          font-weight: 700;
+          font-size: 1rem;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          display: block;
+          background: $mute;
+          width: 100%;
+          height: 0.125rem;
+          top: 1rem;
+          left: 50%;
+        }
+        &:last-child:after {
+          display: none;
+        }
+        &.is-complete {
+          color: #6d6875;
+
+          &:before {
+            content: "\2713";
+            color: $complete;
+            border: 2px solid $complete;
+          }
+          &:after {
+            background: $complete;
+          }
+        }
+        &.is-active {
+          font-size: 1.5rem;
+
+          &:before {
+            color: #fff;
+            border: 2px solid $complete;
+            background: $active;
+            margin-bottom: -4.9rem;
+          }
         }
       }
     }
   }
 
-  .gr-content2 {
+  .c-details {
   }
 }
 </style>

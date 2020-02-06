@@ -1,20 +1,18 @@
 <template>
   <section class="candidate_details">
-    <div>
-      <div class="cd-layout">
-        <form>
-          <template v-for="(formColumn, index) in candidateDetailsFields">
-            <input :key="index" type="text" :placeholder="formColumn" />
-          </template>
-        </form>
-        <div class="control-btn-group">
-          <span class="ctrl-btn">
-            <span>Add New Detail</span>
-          </span>
-          <span class="ctrl-btn">
-            <span>Save Changes</span>
-          </span>
-        </div>
+    <div class="cd-layout">
+      <form>
+        <template v-for="(formColumn, index) in candidateDetailsFields">
+          <input :key="index" type="text" :placeholder="formColumn" />
+        </template>
+      </form>
+      <div class="control-btn-group">
+        <span class="ctrl-btn">
+          <span>Add New Detail</span>
+        </span>
+        <span class="ctrl-btn">
+          <span>Save Changes</span>
+        </span>
       </div>
     </div>
   </section>
@@ -35,22 +33,25 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 350px;
-  
+  border: 1px solid #ccc;
+  margin: 0 10%;
+  height: 330px;
 
   .cd-layout {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ccc;
-    width: 80%;
-    align-self: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px 15px;
 
     form {
       display: grid;
       grid-template-columns: 40% 40%;
       grid-column-gap: 20%;
+      grid-row-gap: 30px;
       width: 100%;
-      margin-bottom: 200px;
+      height: 85%;
+      overflow-y: auto;
 
       > input {
         height: 35px;
@@ -63,6 +64,7 @@ export default {
     .control-btn-group {
       display: flex;
       justify-content: space-between;
+      margin-top: 20px;
 
       .ctrl-btn {
         width: 40%;

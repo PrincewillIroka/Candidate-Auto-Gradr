@@ -5,12 +5,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    activeTab: 1,
+    activeTab: 'home',
+    activeStep: 1,
     candidateDetailsFields: ["First Name", "Last Name"]
   },
   mutations: {
     toggleTab: (state, num) => {
-      state.activeTab = num
+      state.activeStep = num
     },
     addCandidateDetailsField: (state, newField) => {
       state.candidateDetailsFields = state.candidateDetailsFields.push(newField)      
