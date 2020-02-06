@@ -9,7 +9,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapMutations } from "vuex";
+
 import Header from "@/components/Header.vue";
 import Banner from "@/views/Banner.vue";
 import Discover from "@/views/Discover.vue";
@@ -20,6 +21,21 @@ export default {
     Header,
     Banner,
     Discover
+  },
+  methods: {
+    ...mapMutations(["toogleAddBoxShadowToHeader"]),
+    handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      let tValue;
+      scrollTop >= 50 ? (tValue = true) : (tValue = false);
+      this.toogleAddBoxShadowToHeader(tValue);
+    }
+  },
+  mounted() {
+    document.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    document.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
@@ -29,7 +45,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  >.header {
+  > .header {
     position: fixed;
     top: 0;
     left: 0;
@@ -37,7 +53,7 @@ export default {
     z-index: 10;
   }
 
-  >.section {
+  > .section {
     display: flex;
     flex-direction: column;
     margin-top: 120px;

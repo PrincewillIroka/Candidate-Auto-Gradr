@@ -94,15 +94,15 @@ export default {
       }
 
       .gr-result {
-        background-color: $color-common;
-        color: $color-white;
+        background-color: $color-white;
+        color: $color-common;
         padding: 5px 12px;
         border-radius: 3px;
         font-weight: bold;
         cursor: default;
         &:hover {
-          background-color: $color-white;
-          color: $color-common;
+          background-color: $color-common;
+          color: $color-white;
         }
       }
     }

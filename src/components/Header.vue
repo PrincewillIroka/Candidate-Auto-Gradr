@@ -1,5 +1,5 @@
 <template>
-  <header class="header active-header">
+  <header :class="[addBoxShadowToHeader ? 'active-header' : 'header']">
     <img src="../assets/images/logo.png" class="logo" alt="Logo" @click="handleHome" />
     <nav class="nav">
       <a href="/">Home</a>
@@ -13,10 +13,12 @@ import { mapState } from 'vuex'
 export default {
   name: "Header",
   methods: {
-    
+    handleHome(){
+      this.router.push('/')
+    }
   },
   computed:{
-      ...mapState(['activeTab'])
+      ...mapState(['activeTab', 'addBoxShadowToHeader'])
   }
 };
 </script>
@@ -27,7 +29,9 @@ export default {
   padding: 5px 15% 10px 5%;
   justify-content: space-between;
   align-items: center;
-  z-index: 10;
+  z-index: 1000;
+  // box-shadow: 0 4px 2px -2px #ccc;
+  background-color: $color-white;
 
   .logo {
     height: 60px;
@@ -54,5 +58,6 @@ export default {
 .active-header {
   box-shadow: 0 4px 2px -2px #ccc;
   // box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  // background-color: rgb(247, 247, 247);
 }
 </style>
