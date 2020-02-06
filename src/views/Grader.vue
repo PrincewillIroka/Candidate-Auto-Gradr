@@ -71,7 +71,8 @@ export default {
       align-items: center;
       justify-content: space-between;
       padding: 20px;
-      background-color: $color-common;
+      // background-color: $color-common;
+      background-color: rgba(32, 32, 39, 0.9);
       font-family: "PT Sans", sans-serif;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
@@ -87,22 +88,21 @@ export default {
         cursor: default;
         margin-left: 70px;
         &:hover {
-          opacity: 0.9;
+          background-color: $color-white;
+          color: $color-red;
         }
       }
 
       .gr-result {
-        background-color: $color-white;
-        padding: 3px 12px;
+        background-color: $color-common;
+        color: $color-white;
+        padding: 5px 12px;
         border-radius: 3px;
-        border: 2px solid $color-white;
-        color: $color-common;
         font-weight: bold;
         cursor: default;
         &:hover {
-          border: 2px solid $color-white;
-          background-color: $color-common;
-          color: $color-white;
+          background-color: $color-white;
+          color: $color-common;
         }
       }
     }
@@ -124,7 +124,6 @@ export default {
         font-size: 0.875rem;
         color: #6d6875;
         cursor: default;
-
 
         &:before {
           content: attr(data-step);
