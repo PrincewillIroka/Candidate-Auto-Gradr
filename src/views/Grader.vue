@@ -38,9 +38,9 @@ export default {
     TechnologiesUsed
   },
   methods: {
-    ...mapMutations(["toggleTab"]),
+    ...mapMutations(["toggleStep"]),
     changeTab(value) {
-      this.toggleTab(value);
+      this.toggleStep(value);
     }
   },
   computed: {

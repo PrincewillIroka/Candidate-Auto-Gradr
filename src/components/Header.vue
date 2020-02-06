@@ -2,8 +2,8 @@
   <header :class="[addBoxShadowToHeader ? 'active-header' : 'header']">
     <img src="../assets/images/logo.png" class="logo" alt="Logo" @click="handleHome" />
     <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/grader">Grade</a>
+      <a href="/" :class="[route === 'home' ? 'activeRoute' : '']">Home</a>
+      <a href="/grader" :class="[route === 'grader' ? 'activeRoute' : '']">Grade</a>
     </nav>
   </header>
 </template>
@@ -12,13 +12,18 @@
 import { mapState } from 'vuex'
 export default {
   name: "Header",
+  data(){
+    return {
+      route: this.$route.name
+    }
+  },
   methods: {
     handleHome(){
       this.router.push('/')
     }
   },
   computed:{
-      ...mapState(['activeTab', 'addBoxShadowToHeader'])
+    ...mapState(['addBoxShadowToHeader'])
   }
 };
 </script>
@@ -30,7 +35,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  // box-shadow: 0 4px 2px -2px #ccc;
   background-color: $color-white;
 
   .logo {
@@ -42,7 +46,6 @@ export default {
   nav {
     a {
       font-family: "Oswald", sans-serif;
-      font-weight: bold;
       color: $color-common;
       &:hover {
         opacity: 0.7;
@@ -52,12 +55,14 @@ export default {
     a:nth-child(2) {
       margin-left: 30px;
     }
+
+    .activeRoute{
+      font-weight: bold;
+    }
   }
 }
 
 .active-header {
   box-shadow: 0 4px 2px -2px #ccc;
-  // box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-  // background-color: rgb(247, 247, 247);
 }
 </style>
