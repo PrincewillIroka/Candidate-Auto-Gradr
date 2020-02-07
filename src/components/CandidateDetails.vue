@@ -7,7 +7,7 @@
         </template>
       </form>
       <div class="control-btn-group">
-        <span class="ctrl-btn">
+        <span class="ctrl-btn" @click="toggleModal({location: 'New Candidate Detail', isOpen: true})">
           <span>Add New Detail</span>
         </span>
         <span class="ctrl-btn">
@@ -24,6 +24,9 @@ export default {
   name: "CandidateDetails",
   computed: {
     ...mapState(["candidateDetailsFields"])
+  },
+  methods:{
+    ...mapMutations(['toggleModal'])
   }
 };
 </script>

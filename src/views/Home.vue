@@ -4,6 +4,7 @@
     <section class="section">
       <Banner />
       <Discover />
+      <Subscribe/>
     </section>
   </div>
 </template>
@@ -14,13 +15,15 @@ import { mapMutations } from "vuex";
 import Header from "@/components/Header.vue";
 import Banner from "@/views/Banner.vue";
 import Discover from "@/views/Discover.vue";
+import Subscribe from "@/views/Subscribe.vue";
 
 export default {
   name: "home",
   components: {
     Header,
     Banner,
-    Discover
+    Discover,
+    Subscribe
   },
   methods: {
     ...mapMutations(["toogleAddBoxShadowToHeader"]),

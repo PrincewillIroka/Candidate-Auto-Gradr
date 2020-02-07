@@ -1,41 +1,47 @@
 <template>
-  <div class="grader">
-    <Header class="header" />
-    <section class="gr-content">
-      <div class="gr-header">
-        <span>Enter Candidate details here:</span>
-        <div>
-          <span class="gr-result">See Result</span>
-          <span class="gr-clr">Clear All</span>
+  <div>
+    <div class="grader">
+      <Header class="header" />
+      <section class="gr-content">
+        <div class="gr-header">
+          <span>Enter Candidate details here:</span>
+          <div>
+            <span class="gr-result">See Result</span>
+            <span class="gr-clr">Clear All</span>
+          </div>
         </div>
-      </div>
-      <ol class="steps">
-        <li class="step is-complete" data-step="1" @click="changeTab(1)">Candidate Details</li>
-        <li class="step is-active" data-step="2" @click="changeTab(2)">Experience</li>
-        <li class="step" data-step="3" @click="changeTab(3)">Tools/Technologies Used</li>
-      </ol>
-    </section>
-    <section class="gr-content2">
-      <CandidateDetails v-if="activeStep === 1" />
-      <Experience v-else-if="activeStep === 2" />
-      <TechnologiesUsed v-else-if="activeStep === 3" />
-    </section>
+        <ol class="steps">
+          <li class="step is-complete" data-step="1" @click="changeTab(1)">Candidate Details</li>
+          <li class="step is-active" data-step="2" @click="changeTab(2)">Experience</li>
+          <li class="step" data-step="3" @click="changeTab(3)">Tools/Technologies Used</li>
+        </ol>
+      </section>
+      <section class="gr-content2">
+        <CandidateDetails v-if="activeStep === 1" />
+        <Experience v-else-if="activeStep === 2" />
+        <TechnologiesUsed v-else-if="activeStep === 3" />
+      </section>
+    </div>
+    <Modal v-if="isModalOpen" />
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 import CandidateDetails from "@/components/CandidateDetails.vue";
 import Experience from "@/components/Experience.vue";
 import TechnologiesUsed from "@/components/TechnologiesUsed.vue";
+import Modal from "@/views/Modal.vue";
+
 export default {
   name: "Grader",
   components: {
     Header,
     CandidateDetails,
     Experience,
-    TechnologiesUsed
+    TechnologiesUsed,
+    Modal
   },
   methods: {
     ...mapMutations(["toggleStep"]),
@@ -44,7 +50,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(["activeStep"])
+    ...mapState(["activeStep"]),
+    ...mapGetters(['isModalOpen'])
   }
 };
 </script>

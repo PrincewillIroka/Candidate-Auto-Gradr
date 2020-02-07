@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     activeStep: 1,
     candidateDetailsFields: ["First Name", "Last Name"],
-    addBoxShadowToHeader: false
+    addBoxShadowToHeader: false,
+    modal: { location: '', isOpen: false}
   },
   mutations: {
     toggleStep: (state, num) => {
@@ -18,6 +19,19 @@ export default new Vuex.Store({
     },
     toogleAddBoxShadowToHeader: (state, addBoxShadowToHeader)  => {
       state.addBoxShadowToHeader = addBoxShadowToHeader
+    },
+    toggleModal: (state, payload) => {
+      const location = payload.location;
+      const isOpen = payload.isOpen;
+      state.modal = { location,  isOpen }
+    }
+  },
+  getters: {
+    isModalOpen: state => {
+      return state.modal.isOpen
+    },
+    modalLocation: state => {
+      return state.modal.location
     }
   },
   actions: {

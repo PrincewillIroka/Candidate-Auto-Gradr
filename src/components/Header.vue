@@ -3,7 +3,7 @@
     <img src="../assets/images/logo.png" class="logo" alt="Logo" @click="handleHome" />
     <nav class="nav">
       <a href="/" :class="[route === 'home' ? 'activeRoute' : '']">Home</a>
-      <a href="/grader" :class="[route === 'grader' ? 'activeRoute' : '']">Grade</a>
+      <a href="/grader" :class="[route === 'grader' ? 'activeRoute' : '']">Grader</a>
     </nav>
   </header>
 </template>
@@ -34,7 +34,7 @@ export default {
   padding: 5px 15% 10px 5%;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
+  z-index: 1;
   background-color: $color-white;
 
   .logo {
