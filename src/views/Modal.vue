@@ -3,19 +3,22 @@
     <div class="content">
       <span class="close" @click="toggleModal({location: '', isOpen: false})">&times;</span>
       <div class="layout">
-        <FieldDetails />
+        <FieldDetails v-if="modalLocation === 'New Candidate Detail'"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import FieldDetails from "@/components/FieldDetails";
 
 export default {
   components: {
     FieldDetails
+  },
+  computed:{
+    ...mapGetters(['modalLocation'])
   },
   methods: {
     ...mapMutations(["toggleModal"])

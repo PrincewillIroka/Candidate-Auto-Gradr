@@ -3,19 +3,43 @@
     <span class="n-detail">New Detail</span>
     <div class="detail-row">
       <span>Title:</span>
-      <input type="text" />
+      <input type="text" v-model="newField.title" />
     </div>
     <div class="detail-row">
       <span>Value:</span>
-      <input type="text" />
+      <input type="text" v-model="newField.value" />
     </div>
-    <button>Submit</button>
+    <button @click="handleSubmit">Submit</button>
   </div>
 </template>
 
 <script>
+const initialData = () => ({
+  newField: {
+    title: "",
+    value: ""
+  }
+});
+
+import { mapMutations, mapActions } from "vuex";
+
 export default {
-  name: "FieldDetails"
+  name: "FieldDetails",
+  data() {
+    return initialData();
+  },
+  methods: {
+    ...mapMutations([""]),
+    ...mapActions(["addCandidateDetailsField"]),
+    handleSubmit(event) {
+      event.preventDefault();
+      const newField = this.newField;
+      if (newField.title) {
+        this.addCandidateDetailsField(newField);
+        Object.assign(this.$data, initialData());
+      }
+    }
+  }
 };
 </script>
 

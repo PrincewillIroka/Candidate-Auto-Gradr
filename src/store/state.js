@@ -1,6 +1,9 @@
 const state = {
   activeStep: 1,
-  candidateDetailsFields: ["First Name", "Last Name"],
+  candidateDetailsFields: [
+    { title: "First Name", value: '' }, 
+    { title: "Last Name", value: '' }
+  ],
   addBoxShadowToHeader: false,
   modal: { location: "", isOpen: false }
 };

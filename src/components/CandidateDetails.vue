@@ -3,11 +3,17 @@
     <div class="cd-layout">
       <form>
         <template v-for="(formColumn, index) in candidateDetailsFields">
-          <input :key="index" type="text" :placeholder="formColumn" />
+          <div :key="index" class="cd-field">
+            <input type="text" :placeholder="formColumn.title" :value="formColumn.value" />
+            <DeleteIcon class="del-icon" v-if="index > 1" @click="handleRemoveField(index)"/>
+          </div>
         </template>
       </form>
       <div class="control-btn-group">
-        <span class="ctrl-btn" @click="toggleModal({location: 'New Candidate Detail', isOpen: true})">
+        <span
+          class="ctrl-btn"
+          @click="toggleModal({location: 'New Candidate Detail', isOpen: true})"
+        >
           <span>Add New Detail</span>
         </span>
         <span class="ctrl-btn">
@@ -20,13 +26,21 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
+import DeleteIcon from "vue-material-design-icons/DeleteOutline";
+
 export default {
   name: "CandidateDetails",
+  components: {
+    DeleteIcon
+  },
   computed: {
     ...mapState(["candidateDetailsFields"])
   },
-  methods:{
-    ...mapMutations(['toggleModal'])
+  methods: {
+    ...mapMutations(["toggleModal", 'removeField']),
+    handleRemoveField(index){
+      this.removeField(index)
+    }
   }
 };
 </script>
@@ -49,28 +63,50 @@ export default {
 
     form {
       display: grid;
-      grid-template-columns: 40% 40%;
-      grid-column-gap: 20%;
+      grid-template-columns: 35% 35%;
+      grid-column-gap: 30%;
       grid-row-gap: 30px;
       width: 100%;
-      height: 85%;
+      // height: 85%;
       overflow-y: auto;
+      margin-bottom: 20px;
 
-      > input {
-        height: 35px;
-        padding: 0 7px;
-        border: 1px solid rgb(158, 158, 158);
-        border-radius: 3px;
+      .cd-field {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        > input {
+          height: 35px;
+          width: 90%;
+          padding: 0 7px;
+          border: 1px solid rgb(158, 158, 158);
+          border-radius: 3px;
+          margin-right: 5px;
+        }
+
+        .del-icon{
+          color: rgb(139, 139, 139);
+          >svg{
+            height: 20px;
+            width: 20px;
+          }
+
+          &:hover{
+            color: $color-red;
+          }
+          
+        }
       }
     }
 
     .control-btn-group {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: auto;
 
       .ctrl-btn {
-        width: 40%;
+        width: 35%;
         display: flex;
         justify-content: center;
         background-color: $color-common;

@@ -12,6 +12,14 @@ const mutations = {
     const location = payload.location;
     const isOpen = payload.isOpen;
     state.modal = { location, isOpen };
+  },
+  incrementCandidateDetailsField: (state, payload) => {
+    state.candidateDetailsFields = [...state.candidateDetailsFields, payload]
+  },
+  removeField: (state, index) => {
+    const fields = state.candidateDetailsFields;
+    fields.splice(index, 1);
+    state.candidateDetailsFields = fields;
   }
 };
 
